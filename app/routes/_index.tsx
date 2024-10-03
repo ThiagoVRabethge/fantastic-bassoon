@@ -18,7 +18,7 @@ export default function Index() {
     e.preventDefault()
 
     await axios
-      .post("https://stunning-journey-ashy.vercel.app/users", {
+      .post("https://fluffy-happiness.onrender.com/users", {
         "name": name,
         "email": email
       })
