@@ -1,10 +1,10 @@
 import type { MetaFunction } from "@remix-run/node"
 import axios from "axios"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "New Remix App" },
+    { title: "Habit Tracker" },
     { name: "description", content: "Welcome to Remix!" },
   ]
 }
@@ -14,11 +14,18 @@ export default function Index() {
 
   const [email, setEmail] = useState<string>()
 
+  useEffect(() => {
+    axios
+      .get("https://congenial-garbanzo-ochre.vercel.app/users/1")
+      .then(() => console.log("server active"))
+      .catch((error) => console.error(error))
+  }, [])
+
   const handleSignIn = async (e: any) => {
     e.preventDefault()
 
     await axios
-      .post("https://fluffy-happiness.onrender.com/users", {
+      .post("https://congenial-garbanzo-ochre.vercel.app/users", {
         "name": name,
         "email": email
       })
